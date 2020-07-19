@@ -1,6 +1,7 @@
 from scipy.integrate import odeint
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider, Button
 
 def SEIR(currentVec, time, N, beta, gamma):
 	'''
@@ -32,10 +33,27 @@ S, I, R = sol.T
 
 #Plot the results
 fig, ax = plt.subplots()
+plt.subplots_adjust(left=0.25, bottom=0.25)
 ax.plot(time, S, 'b', label = 'Susceptible')
 ax.plot(time, I, 'r', label = 'Infected')
 ax.plot(time, R, 'g', label = 'Recovered')
 ax.plot(time, S+I+R, '--', label = 'Total') #Mark total with a dashed line
 ax.set(xlabel = 'Time (days)', ylabel = "People", title = 'Disease Spread')
 plt.legend()
+
+#Add sliders for input parameters
+sliderColor = 'red'
+betaAx = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor = sliderColor)
+betaSlider = Slider(betaAx, 'Beta', 1, 10, valinit = 3, valstep = 1)
+
+DAx = plt.axes([0.25, 0.15, 0.65, 0.03], facecolor = sliderColor)
+gammaSlider = Slider(DAx, 'Days to recover (1/Gamma)', 1, 15, valinit = 5, valstep = 1)
+
+def reset(event):
+    betaSlider.reset()
+    gammaSlider.reset()
+resetAx = fig.add_axes([0.8, 0.025, 0.1, 0.04])
+resetButton = Button(resetAx, 'Reset', color = sliderColor)
+resetButton.on_clicked(reset)
+
 plt.show()
