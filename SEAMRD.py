@@ -31,7 +31,7 @@ def SEIR(currentVec, time, N, beta, gamma1, gamma2, miu, delta, alpha, rho):
 time = np.linspace(0, 49, 100) #Equally spaced time values in the range
 
 #Initialize the parameters
-N = 300000000
+N = 10000
 beta = 4
 gamma1 = gamma2= 1/12
 miu = 1/2
@@ -39,7 +39,7 @@ delta = 3
 alpha = 0.05
 rho = 1/6
 
-initVec = [N-1, 1, 0, 0, 0, 0] #Begin with N-1 susceptible, 1 exposed, 0 asymp/miserable, and no recovered or dead
+initVec = [N-100, 100, 0, 0, 0, 0] #Begin with N-1 susceptible, 1 exposed, 0 asymp/miserable, and no recovered or dead
 
 #Integrate the differential equations
 sol = odeint(SEIR, initVec, time, args = (N, beta, gamma1, gamma2, miu, delta, alpha, rho))
@@ -65,7 +65,7 @@ betaSlider = Slider(betaAx, 'Beta (expected number of people infected per day)',
 miuAx = plt.axes([0.25, 0.10, 0.65, 0.03])
 miuSlider = Slider(miuAx, 'proportion of people getting miserable', 0, 1, valinit = 1/2, valstep = 1/10, color = sliderColor)
 DAx = plt.axes([0.25, 0.20, 0.65, 0.03])
-DSlider = Slider(DAx, 'Days to recover (either once first asymptomatic or once miserable) (1/Gamma)', 1, 15, valinit = 10, valstep = 1, color = sliderColor)
+DSlider = Slider(DAx, 'Days to transition (E->A orA->M) (1/Gamma) (1/Gamma)', 1, 15, valinit = 10, valstep = 1, color = sliderColor)
  # delta slider 
 deltaAx = plt.axes([0.25, 0.05, 0.65, 0.03])
 deltaSlider = Slider(deltaAx, 'Days of incubation (delta)', 1, 15, valinit = 3, valstep = 1, color = sliderColor)
@@ -106,5 +106,4 @@ setButton = Button(setAx, 'Model', color = 'gray')
 setButton.on_clicked(model)
 
 plt.show()
-
 
