@@ -40,7 +40,7 @@ def getBeta(beta1, beta2, tLock):
 	'''	
 	Returns a variable beta as a function of time
 	beta1 = Average number of people an asymptotic person infects every day before lockdown
-	beta2 = Average number of people an asymptotic person infects every day before lockdown
+	beta2 = Average number of people an asymptotic person infects every day after lockdown
 	tLock = Day that lockdown is first implemented
 	'''
 	def betaLockdown(time):
