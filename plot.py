@@ -19,7 +19,7 @@ tLock = 15
 initVec = [N-1, 1, 0, 0, 0, 0] #Begin with N-1 susceptible, 1 exposed, 0 asymp/miserable, and no recovered or dead
 
 #Integrate the differential equations
-sol = generateData(initVec, time, N, beta1, beta2, tLock, gamma1, gamma2, eta, mu, delta, alpha, rho)
+sol = generateData(time, initVec, N, beta1, beta2, tLock, gamma1, gamma2, eta, mu, delta, alpha, rho)
 S, E, A, M, R, D = sol
 
 #Plot the results
@@ -70,7 +70,7 @@ def model(event):
 	mu = muSlider.val
 
 	#Differentiate the equations again
-	sol = generateData(initVec, time, N, beta1, beta2, tLock, gamma1, gamma2, eta, mu, delta, alpha, rho)
+	sol = generateData(time, initVec, N, beta1, beta2, tLock, gamma1, gamma2, eta, mu, delta, alpha, rho)
 	S, E, A, M, R, D = sol
 
 	#Change the y-data on each of the plots

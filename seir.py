@@ -39,6 +39,7 @@ def SEIR(currentVec, time, N, betaLockdown, gamma1, gamma2, eta, mu, delta, alph
 def getBeta(beta1, beta2, tLock):
 	'''	
 	Returns a variable beta as a function of time
+
 	beta1 = Average number of people an asymptotic person infects every day before lockdown
 	beta2 = Average number of people an asymptotic person infects every day after lockdown
 	tLock = Day that lockdown is first implemented
@@ -50,6 +51,8 @@ def getBeta(beta1, beta2, tLock):
 			return beta2
 	return betaLockdown
 
-def generateData(initVec, time, N, beta1, beta2, tLock, gamma1, gamma2, eta, mu, delta, alpha, rho):
-	betaLockdown = getBeta(beta1, beta2, tLock)
+def generateData(time, initVec, N, beta1, beta2, tLock, gamma1, gamma2, eta, mu, delta, alpha, rho):
+	'''Given all of the parameters, generates the data SEAMRD'''
+	betaLockdown = getBeta(beta1, beta2, tLock) #Get the lockdown function
+	#Integrate the differential equations and return the data
 	return odeint(SEIR, initVec, time, args = (N, betaLockdown, gamma1, gamma2, eta, mu, delta, alpha, rho)).T
