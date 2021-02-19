@@ -9,7 +9,7 @@ def SEIR(currentVec, time, N, betaLockdown, gamma1, gamma2, eta, mu, delta, alph
 	D = Number of days it takes for an asymptomatic person to recover (1/gamma1)
 	gamma1 = Proportion of asymptomatic people who recover each day (1/D)
 	gamma2 = Proportion of miserable people who recover each day
-	eta = Proportion of miserable people who become asymptotic each day
+	eta = Proportion of asymptotic people that become miserable each day
 	delta = Proportion of exposed people that become asymptotic each day
 	mu = Proportion of asymptotic people that become miserable
 	alpha = Fatality rate = Proportion of miserable people that die 
